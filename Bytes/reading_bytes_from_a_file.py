@@ -1,16 +1,22 @@
 import logging
-import os
+import pathlib
+from pathlib import Path
 
 
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
 
-with open("test_file.dat", "rb") as binary_file:
+# Defineing important paths
+script_path_abs = Path(__file__).absolute().parent
+data_path_abs = Path(script_path_abs).joinpath('Data')
+test_file_path = Path(data_path_abs).joinpath('test_file.dat')
+
+with open(test_file_path, "rb") as binary_file:
     logging.debug(binary_file)
     # Read the whole file at once
     data = binary_file.read()
     logging.debug(data)
 
-with open("test_file.dat", "rb") as text_file:
+with open(test_file_path, "rb") as text_file:
     # One option is to call readline() explicitly
     # single_line = text_file.readline()
 
